@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="Pi1-s2-T21">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AFDropdownNotification" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nri-Lp-rfG">
+                                <rect key="frame" x="0.0" y="110" width="320" height="36"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="30"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Simple dropdown notification view for iOS" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hR1-nG-g6q">
+                                <rect key="frame" x="16" y="151" width="288" height="57"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="24"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGA-Cz-YhA">
+                                <rect key="frame" x="101" y="254" width="119" height="30"/>
+                                <state key="normal" title="Show notification">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showNotification:" destination="BYZ-38-t0r" eventType="touchUpInside" id="n4v-nQ-3bt"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.062745098040000002" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Pi1-s2-T21" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="1Rm-n5-EnE"/>
+                            <constraint firstItem="Nri-Lp-rfG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4Et-6c-cC7"/>
+                            <constraint firstAttribute="centerX" secondItem="jGA-Cz-YhA" secondAttribute="centerX" id="5RT-Fh-P0P"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Pi1-s2-T21" secondAttribute="bottom" id="9pO-TB-nqA"/>
+                            <constraint firstAttribute="trailing" secondItem="Pi1-s2-T21" secondAttribute="trailing" id="BP4-yx-6lv"/>
+                            <constraint firstItem="Pi1-s2-T21" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="FHo-Bz-bOn"/>
+                            <constraint firstAttribute="trailing" secondItem="hR1-nG-g6q" secondAttribute="trailing" constant="16" id="Rq7-Ql-DVZ"/>
+                            <constraint firstItem="Nri-Lp-rfG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="90" id="fNs-mv-aHK"/>
+                            <constraint firstItem="hR1-nG-g6q" firstAttribute="top" secondItem="Nri-Lp-rfG" secondAttribute="bottom" constant="5" id="ieI-iv-W8e"/>
+                            <constraint firstAttribute="trailing" secondItem="Nri-Lp-rfG" secondAttribute="trailing" id="pvX-r2-c04"/>
+                            <constraint firstItem="hR1-nG-g6q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="r0k-bt-7zf"/>
+                            <constraint firstItem="jGA-Cz-YhA" firstAttribute="top" secondItem="hR1-nG-g6q" secondAttribute="bottom" constant="46" id="rts-wh-HNX"/>
+                        </constraints>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="568"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="249" y="464"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="background" width="640" height="1136"/>
+    </resources>
+</document>
