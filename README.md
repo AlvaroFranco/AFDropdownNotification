@@ -21,8 +21,8 @@ If you're not, import these files to your project:
 First of all, init your AFDropdownNotification class and set your main class as ```AFDropdownNotificationDelegate```:
 
 ```objc
-	AFDropdownNotification *notification = [[AFDropdownNotification alloc] init];
-    notification.notificationDelegate = self;
+AFDropdownNotification *notification = [[AFDropdownNotification alloc] init];
+notification.notificationDelegate = self;
 ```
 
 You can configure the title text with the ```titleText``` property, the subtitle text with ```subtitleText```, an optional left image defined as ```image```, and two optional buttons, with ```topButtonText``` and ```bottomButtonText```. For example:
@@ -68,7 +68,7 @@ Finally, to handle the buttons taps, implement the two methods defined by the de
 - [ ] Autolayout support for rotation
 
 ##License
-AFBlurSegue is under MIT license so feel free to use it!
+AFDropdownNotification is under MIT license so feel free to use it!
 
 ##Author
 Made by Alvaro Franco. If you have any question, feel free to drop me a line at [alvarofrancoayala@gmail.com](mailto:alvarofrancoayala@gmail.com)
