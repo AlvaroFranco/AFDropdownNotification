@@ -3,7 +3,7 @@ AFDropdownNotification
 
 Dropdown notification view for iOS
 
-![alt text](https://raw.github.com/AlvaroFranco/AFDropdownNotification/master/img/preview.gif "Preview")
+![alt text](https://raw.githubusercontent.com/AlvaroFranco/AFDropdownNotification/master/img/preview.gif?token=ABV8uk1ShHPyKmhdNNJsvN3jYyuhgxJGks5UmHMwwA%3D%3D "Preview")
 
 ##Installation
 
