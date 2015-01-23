@@ -166,11 +166,6 @@
             UIDynamicItemBehavior *elasticityBehavior = [[UIDynamicItemBehavior alloc] initWithItems:@[_notificationView]];
             elasticityBehavior.elasticity = 0.3f;
             [_animator addBehavior:elasticityBehavior];
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                
-                [_animator removeAllBehaviors];
-            });
         } else {
             
             [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
