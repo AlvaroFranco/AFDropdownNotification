@@ -28,6 +28,8 @@
 
 @property (nonatomic) BOOL isBeingShown;
 
+@property (nonatomic) BOOL gravityAnimation;
+
 @end
 
 @implementation AFDropdownNotification
@@ -58,7 +60,6 @@
         [_topButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         _topButton.adjustsImageWhenHighlighted = YES;
         _topButton.backgroundColor = [UIColor clearColor];
-        
 
         [_topButton.layer setCornerRadius:10];
         [_topButton.layer setBorderWidth:1];
@@ -146,7 +147,7 @@
         
         if (_dismissOnTap) {
             
-            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissWithGravityAnimation:)];
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
             tap.numberOfTapsRequired = 1;
             [_notificationView addGestureRecognizer:tap];
         }
@@ -175,7 +176,13 @@
         }
         
         _isBeingShown = YES;
+        _gravityAnimation = animation;
     }
+}
+
+-(void)dismiss {
+    
+    [self dismissWithGravityAnimation:_gravityAnimation];
 }
 
 -(void)dismissWithGravityAnimation:(BOOL)animation {
@@ -189,6 +196,7 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             
             [_animator removeAllBehaviors];
+            [self removeSubviews];
             [_notificationView removeFromSuperview];
         });
     } else {
@@ -198,11 +206,20 @@
             _notificationView.frame = CGRectMake(0, -_notificationView.frame.size.height, [[UIScreen mainScreen] bounds].size.width, _notificationView.frame.size.height);
         } completion:^(BOOL finished) {
             
+            [self removeSubviews];
             [_notificationView removeFromSuperview];
         }];
     }
     
     _isBeingShown = NO;
+}
+
+-(void)removeSubviews {
+    
+    for (UIView *subiew in _notificationView.subviews) {
+        
+        [subiew removeFromSuperview];
+    }
 }
 
 @end
