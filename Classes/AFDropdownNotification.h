@@ -19,7 +19,14 @@
 
 @interface AFDropdownNotification : NSObject
 
-typedef void (^block)();
+typedef NS_ENUM(NSInteger, AFDropdownNotificationEvent) {
+    
+    AFDropdownNotificationEventTopButton,
+    AFDropdownNotificationEventBottomButton,
+    AFDropdownNotificationEventTap
+};
+
+typedef void (^block)(AFDropdownNotificationEvent event);
 
 @property (nonatomic, strong) id<AFDropdownNotificationDelegate> notificationDelegate;
 
@@ -30,6 +37,10 @@ typedef void (^block)();
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, strong) NSString *topButtonText;
 @property (nonatomic, strong) NSString *bottomButtonText;
+
+@property (nonatomic) BOOL isBeingShown;
+
+-(void)listenEventsWithBlock:(block)block;
 
 -(void)presentInView:(UIView *)view withGravityAnimation:(BOOL)animation;
 -(void)dismissWithGravityAnimation:(BOOL)animation;

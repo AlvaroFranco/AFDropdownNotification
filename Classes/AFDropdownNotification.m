@@ -25,10 +25,9 @@
 
 @property (nonatomic) CGSize screenSize;
 @property (nonatomic, strong) UIDynamicAnimator *animator;
-
-@property (nonatomic) BOOL isBeingShown;
-
 @property (nonatomic) BOOL gravityAnimation;
+
+@property (nonatomic, copy) block internalBlock;
 
 @end
 
@@ -60,7 +59,7 @@
         [_topButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         _topButton.adjustsImageWhenHighlighted = YES;
         _topButton.backgroundColor = [UIColor clearColor];
-
+        
         [_topButton.layer setCornerRadius:10];
         [_topButton.layer setBorderWidth:1];
         [_topButton.layer setBorderColor:[[UIColor grayColor] CGColor]];
@@ -104,11 +103,9 @@
         
         _notificationView.frame = CGRectMake(0, -notificationHeight, [[UIScreen mainScreen] bounds].size.width, notificationHeight);
         _notificationView.backgroundColor = [UIColor clearColor];
-
+        
         [[[UIApplication sharedApplication] keyWindow] addSubview:_notificationView];
         [[[UIApplication sharedApplication] keyWindow] bringSubviewToFront:_notificationView];
-        
-        
         
         if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
             UIVisualEffect *visualEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
@@ -138,14 +135,14 @@
         }
         
         _topButton.frame = CGRectMake(_titleLabel.frame.origin.x + _titleLabel.frame.size.width + kDropdownPadding, 20 + (kDropdownPadding / 2), kDropdownButtonWidth, kDropdownButtonHeight);
-        [_topButton addTarget:self.notificationDelegate action:@selector(dropdownNotificationTopButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+        [_topButton addTarget:self action:@selector(topButtonTapped) forControlEvents:UIControlEventTouchUpInside];
         
         if (_topButtonText) {
             [_notificationView addSubview:_topButton];
         }
         
         _bottomButton.frame = CGRectMake(_titleLabel.frame.origin.x + _titleLabel.frame.size.width + kDropdownPadding, _topButton.frame.origin.y + _topButton.frame.size.height + 6, kDropdownButtonWidth, kDropdownButtonHeight);
-        [_bottomButton addTarget:self.notificationDelegate action:@selector(dropdownNotificationBottomButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+        [_bottomButton addTarget:self action:@selector(bottomButtonTapped) forControlEvents:UIControlEventTouchUpInside];
         
         if (_bottomButtonText) {
             [_notificationView addSubview:_bottomButton];
@@ -153,7 +150,7 @@
         
         if (_dismissOnTap) {
             
-            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss:)];
             tap.numberOfTapsRequired = 1;
             [_notificationView addGestureRecognizer:tap];
         }
@@ -184,11 +181,43 @@
         _isBeingShown = YES;
         _gravityAnimation = animation;
     }
+    
+    _internalBlock = ^(AFDropdownNotificationEvent event) {
+        
+    };
 }
 
--(void)dismiss {
+-(void)topButtonTapped {
+    
+    [self.notificationDelegate dropdownNotificationTopButtonTapped];
+    
+    if (_internalBlock) {
+        
+        _internalBlock(AFDropdownNotificationEventTopButton);
+    }
+}
+
+-(void)bottomButtonTapped {
+    
+    [self.notificationDelegate dropdownNotificationBottomButtonTapped];
+    
+    //    if (_internalBlock) {
+    
+    _internalBlock(AFDropdownNotificationEventBottomButton);
+    //    }
+}
+
+-(void)dismiss:(id)sender {
     
     [self dismissWithGravityAnimation:_gravityAnimation];
+    
+    if ([sender isKindOfClass:[UITapGestureRecognizer class]]) {
+        
+        if (_internalBlock) {
+            
+            _internalBlock(AFDropdownNotificationEventTap);
+        }
+    }
 }
 
 -(void)dismissWithGravityAnimation:(BOOL)animation {
@@ -204,6 +233,8 @@
             [_animator removeAllBehaviors];
             [self removeSubviews];
             [_notificationView removeFromSuperview];
+            
+            _isBeingShown = NO;
         });
     } else {
         
@@ -214,10 +245,10 @@
             
             [self removeSubviews];
             [_notificationView removeFromSuperview];
+            
+            _isBeingShown = NO;
         }];
     }
-    
-    _isBeingShown = NO;
 }
 
 -(void)removeSubviews {
@@ -226,6 +257,17 @@
         
         [subiew removeFromSuperview];
     }
+}
+
+-(void)listenEventsWithBlock:(block)block {
+    
+    _internalBlock = ^(AFDropdownNotificationEvent event) {
+        
+        if (block) {
+            
+            block(event);
+        }
+    };
 }
 
 @end
