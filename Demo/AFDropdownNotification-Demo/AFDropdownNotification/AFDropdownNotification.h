@@ -38,6 +38,8 @@ typedef void (^block)(AFDropdownNotificationEvent event);
 @property (nonatomic, strong) NSString *topButtonText;
 @property (nonatomic, strong) NSString *bottomButtonText;
 
+@property (nonatomic) BOOL isBeingShown;
+
 -(void)listenEventsWithBlock:(block)block;
 
 -(void)presentInView:(UIView *)view withGravityAnimation:(BOOL)animation;

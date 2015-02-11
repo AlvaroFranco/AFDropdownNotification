@@ -27,8 +27,6 @@
 @property (nonatomic, strong) UIDynamicAnimator *animator;
 @property (nonatomic) BOOL gravityAnimation;
 
-@property (nonatomic) BOOL isBeingShown;
-
 @property (nonatomic, copy) block internalBlock;
 
 @end
