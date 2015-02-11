@@ -61,6 +61,30 @@ Finally, to handle the buttons taps, implement the two methods defined by the de
 }
 ```
 
+Also, you can use blocks:
+
+```objc
+[_notification listenEventsWithBlock:^(AFDropdownNotificationEvent event) {
+       
+    switch (event) {
+        case AFDropdownNotificationEventTopButton:
+            // Top button
+            break;
+                
+        case AFDropdownNotificationEventBottomButton:
+            // Bottom button
+            break;
+                
+        case AFDropdownNotificationEventTap:
+            // Tap
+            break;
+                
+        default:
+            break;
+    }
+}];
+```
+
 
 ##TODO
 
