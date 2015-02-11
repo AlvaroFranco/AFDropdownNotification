@@ -34,6 +34,26 @@
     _notification.dismissOnTap = YES;
     [_notification presentInView:self.view withGravityAnimation:YES];
     
+    [_notification listenEventsWithBlock:^(AFDropdownNotificationEvent event) {
+       
+        switch (event) {
+            case AFDropdownNotificationEventTopButton:
+                // Top button
+                break;
+                
+            case AFDropdownNotificationEventBottomButton:
+                // Bottom button
+                break;
+                
+            case AFDropdownNotificationEventTap:
+                // Tap
+                break;
+                
+            default:
+                break;
+        }
+    }];
+    
     NSLog(@"show notification");
 }
 
