@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "AFDropdownNotification"
-  s.version      = "1.0"
+  s.version      = "1.1"
   s.summary      = "Dropdown notification view for iOS"
 
   s.description  = "Simple and iOS 7-8 design compliant dropdown notification view for iOS."
@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios
 
-  s.source       = { :git => "https://github.com/AlvaroFranco/AFDropdownNotification.git", :tag => 'v1.0' }
+  s.source       = { :git => "https://github.com/AlvaroFranco/AFDropdownNotification.git", :tag => 'v1.1' }
 
   s.screenshot   = "https://raw.githubusercontent.com/AlvaroFranco/AFDropdownNotification/master/img/preview.gif?token=ABV8uk1ShHPyKmhdNNJsvN3jYyuhgxJGks5UmHMwwA%3D%3D"
 
