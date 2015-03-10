@@ -240,6 +240,8 @@
         
         [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             
+            [_animator removeAllBehaviors];
+            
             _notificationView.frame = CGRectMake(0, -_notificationView.frame.size.height, [[UIScreen mainScreen] bounds].size.width, _notificationView.frame.size.height);
         } completion:^(BOOL finished) {
             
