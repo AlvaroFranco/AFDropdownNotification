@@ -39,6 +39,7 @@ typedef void (^block)(AFDropdownNotificationEvent event);
 @property (nonatomic, strong) NSString *bottomButtonText;
 
 @property (nonatomic) BOOL isBeingShown;
+@property (nonatomic) BOOL isImageRounded;
 
 -(void)listenEventsWithBlock:(block)block;
 
