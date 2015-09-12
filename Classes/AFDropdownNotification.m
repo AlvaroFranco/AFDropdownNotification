@@ -120,6 +120,12 @@
         
         if (_image) {
             [_notificationView addSubview:_imageView];
+            
+            if (self.isImageRounded) {
+                self.imageView.clipsToBounds = YES;
+                self.imageView.layer.cornerRadius = kDropdownImageSize/2;
+                self.imageView.image = _image;
+            }
         }
         
         _titleLabel.frame = CGRectMake(kDropdownPadding + kDropdownImageSize + kDropdownPadding, 20 + kDropdownPadding, textWidth, titleHeight);
